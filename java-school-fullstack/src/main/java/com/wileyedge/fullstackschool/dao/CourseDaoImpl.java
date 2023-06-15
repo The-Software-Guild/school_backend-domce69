@@ -24,8 +24,9 @@ public class CourseDaoImpl implements CourseDao {
     public Course createNewCourse(Course course) {
         //YOUR CODE STARTS HERE
 
-
-        return null;
+    	String sql = "INSERT INTO course VALUES(?, ?, ?, ?)";
+    	jdbcTemplate.update(sql, course.getCourseId(), course.getCourseName(), course.getCourseDesc(), course.getTeacherId());
+        return course;
 
         //YOUR CODE ENDS HERE
     }
@@ -33,8 +34,8 @@ public class CourseDaoImpl implements CourseDao {
     @Override
     public List<Course> getAllCourses() {
         //YOUR CODE STARTS HERE
-
-        return null;
+    	String sql = "SELECT * FROM course";
+        return jdbcTemplate.query(sql, new CourseMapper());
 
         //YOUR CODE ENDS HERE
     }
@@ -42,8 +43,9 @@ public class CourseDaoImpl implements CourseDao {
     @Override
     public Course findCourseById(int id) {
         //YOUR CODE STARTS HERE
-
-        return null;
+    	
+    	String sql = "SELECT * FROM course WHERE cid = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[] {id}, new CourseMapper());
 
         //YOUR CODE ENDS HERE
     }
@@ -52,8 +54,9 @@ public class CourseDaoImpl implements CourseDao {
     public void updateCourse(Course course) {
         //YOUR CODE STARTS HERE
 
-
-
+    	String sql = "UPDATE course SET courseCode = ?, courseDesc = ?, teacherId = ? WHERE cid = ?";
+    	jdbcTemplate.update(sql, course.getCourseName(), course.getCourseDesc(), course.getTeacherId(), course.getCourseId());
+    	
         //YOUR CODE ENDS HERE
     }
 
@@ -61,7 +64,8 @@ public class CourseDaoImpl implements CourseDao {
     public void deleteCourse(int id) {
         //YOUR CODE STARTS HERE
 
-
+    	String sql = "DELETE FROM course WHERE cid = ?";
+    	jdbcTemplate.update(sql, new Object[] {id});
 
         //YOUR CODE ENDS HERE
     }
@@ -70,7 +74,8 @@ public class CourseDaoImpl implements CourseDao {
     public void deleteAllStudentsFromCourse(int courseId) {
         //YOUR CODE STARTS HERE
 
-
+    	String sql = "DELETE FROM course_student WHERE course_id = ?";
+    	jdbcTemplate.update(sql, new Object [] {courseId});
 
         //YOUR CODE ENDS HERE
     }

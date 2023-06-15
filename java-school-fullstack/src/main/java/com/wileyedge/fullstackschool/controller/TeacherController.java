@@ -17,45 +17,39 @@ public class TeacherController {
     @GetMapping("/teachers")
     public List<Teacher> getAllTeachers() {
         //YOUR CODE STARTS HERE
-
-        return null;
-
+    	List<Teacher> teachers = teacherServiceImpl.getAllTeachers();
+        return teachers;
         //YOUR CODE ENDS HERE
     }
 
     @GetMapping("/{id}")
     public Teacher getTeacherById(@PathVariable int id) {
         //YOUR CODE STARTS HERE
-
-        return null;
-
+    	Teacher t = teacherServiceImpl.getTeacherById(id);
+        return t;
         //YOUR CODE ENDS HERE
     }
 
     @PostMapping("/add")
     public Teacher addTeacher(@RequestBody Teacher teacher) {
         //YOUR CODE STARTS HERE
-
-        return null;
-
+    	Teacher t = teacherServiceImpl.addNewTeacher(teacher);
+        return t;
         //YOUR CODE ENDS HERE
     }
 
     @PutMapping("/{id}")
     public Teacher updateTeacher(@PathVariable int id, @RequestBody Teacher teacher) {
         //YOUR CODE STARTS HERE
-
-        return null;
-
+    	Teacher t = teacherServiceImpl.updateTeacherData(id, teacher);
+        return t;
         //YOUR CODE ENDS HERE
     }
 
     @DeleteMapping("/{id}")
     public void deleteTeacher(@PathVariable int id) {
         //YOUR CODE STARTS HERE
-
-
-
+    	teacherServiceImpl.deleteTeacherById(id);
         //YOUR CODE ENDS HERE
     }
 }

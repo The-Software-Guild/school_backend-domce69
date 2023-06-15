@@ -21,41 +21,46 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
     //YOUR CODE ENDS HERE
 
     public List<Teacher> getAllTeachers() {
-        //YOUR CODE STARTS HERE
-
-        return null;
-
+        //YOUR CODE STARTS HERE 	
+        return teacherDao.getAllTeachers();
         //YOUR CODE ENDS HERE
     }
 
     public Teacher getTeacherById(int id) {
         //YOUR CODE STARTS HERE
-
-        return null;
+    	
+    	Teacher t = teacherDao.findTeacherById(id);
+        return t;
 
         //YOUR CODE ENDS HERE
     }
 
     public Teacher addNewTeacher(Teacher teacher) {
         //YOUR CODE STARTS HERE
-
-        return null;
+    	Teacher t = teacherDao.createNewTeacher(teacher);
+        return t;
 
         //YOUR CODE ENDS HERE
     }
 
     public Teacher updateTeacherData(int id, Teacher teacher) {
         //YOUR CODE STARTS HERE
-
-        return null;
-
+    	
+    	if(id == teacher.getTeacherId()) {
+    		teacherDao.updateTeacher(teacher);
+    	} else {
+    		teacher.setTeacherFName("IDs do not match, teacher not updated");
+    		teacher.setTeacherLName("IDs do not match, teacher not updated");
+    	}
+ 
+    	return teacher;
         //YOUR CODE ENDS HERE
     }
 
     public void deleteTeacherById(int id) {
         //YOUR CODE STARTS HERE
 
-
+    	teacherDao.deleteTeacher(id);
 
         //YOUR CODE ENDS HERE
     }
